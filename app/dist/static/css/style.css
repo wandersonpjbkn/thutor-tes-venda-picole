@@ -1,0 +1,47 @@
+.is-loading > div:last-child, .is-list > td span, .is-ctrl > div:first-child {
+  margin-left: 15px; }
+
+.is-config {
+  margin-left: auto; }
+
+.is-loading {
+  margin-bottom: 30px; }
+
+.is-input {
+  margin: 40px auto; }
+
+.is-list > td {
+  width: auto; }
+  .is-list > td:not(:first-child) {
+    width: 15%; }
+  .is-list > td input {
+    padding-right: 110px; }
+    .is-list > td input + button {
+      position: absolute;
+      top: 0;
+      right: 0; }
+
+.is-ctrl > div:last-child {
+  position: relative;
+  margin-left: 30px; }
+  .is-ctrl > div:last-child::before {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    display: block;
+    width: 0;
+    height: 75%;
+    border-left: 1px solid #dcdcdc; }
+
+header {
+  margin: 60px 0; }
+  header h1 {
+    margin: 0; }
+
+input:invalid {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 2px solid #ffe000; }

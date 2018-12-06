@@ -1,0 +1,99 @@
+// Herdados
+%small-margin-left {
+  margin-left: 15px;
+}
+
+// Mixins
+@mixin translateY($value) {
+  -webkit-transform: translateY($value);
+  transform: translateY($value);
+}
+
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  box-shadow: $value;
+}
+
+// Estilos
+.is-config {
+  margin-left: auto;
+}
+
+.is-loading {
+  margin-bottom: 30px;
+
+  > div:last-child {
+    @extend %small-margin-left;
+  }
+}
+
+.is-input {
+  margin: 40px auto;
+}
+
+.is-list {
+  > td {
+    width: auto;
+
+    &:not(:first-child) {
+      width: 15%;
+    }
+
+    span {
+      @extend %small-margin-left;
+    }
+
+    input {
+      padding-right: 110px;
+      
+      + button {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+.is-ctrl {
+  > div:first-child {
+    @extend %small-margin-left;
+  }
+
+  > div:last-child {
+    $recuo: 30px;
+
+    position: relative;
+
+    margin-left: $recuo;
+
+    &::before {
+      @include translateY(-50%);
+
+      content: '';
+
+      position: absolute;
+      top: 50%;
+      left: ($recuo / 2) * (-1);
+
+      display: block;
+      width: 0;
+      height: 75%;
+      border-left: 1px solid #dcdcdc;
+    }
+  }
+}
+
+header {
+  margin: 60px 0;
+
+  h1 { margin: 0 }
+}
+
+input {
+  &:invalid {
+    @include box-shadow(none);
+
+    border-bottom: 2px solid #ffe000;
+  }
+}

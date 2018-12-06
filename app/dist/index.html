@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Venda de Picolé</title>
+
+  <link rel="stylesheet" href="static/css/uikit.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+  <!-- Elemnto que seja controlado pelo Vue -->
+  <div id="app">
+
+    <header>
+      <div class="uk-container">
+        <div class="uk-flex uk-flex-middle">
+
+          <h1>{{ title }}</h1>
+
+          <!-- 
+            Inverte para o "modo de edição"
+            Pode ser ocultado pela função "requestServerFailed"
+          -->
+          <a
+            v-if="enableToInsert"
+            :uk-icon="`icon: ${editMode ? 'close' : 'cog'}; ratio: 2`"
+            class="is-config"
+            uk-tooltip='{
+              "title": "Clique para entrar/sair do modo de edição",
+              "pos": "bottom"
+            }'
+            @click.prevent="editMode = !editMode"></a>
+
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="uk-container">
+
+        <!-- Loading -->
+        <div
+          v-if="isLoading"
+          class="is-loading uk-flex">
+
+          <div uk-spinner></div>
+          <div>Carregando ...</div>
+
+        </div>
+
+        <div v-else>
+
+          <!-- Add novos produtos -->
+          <div
+            v-if="enableToInsert && !editMode"
+            class="is-input uk-width-2-3 uk-flex">
+
+            <!-- Campo input -->
+            <input
+              ref="newProduct"
+              type="text"
+              class="uk-input"
+              placeholder="Inserir novo produto"
+              required
+              @keyup.enter="addProduct"/>
+
+            <!-- Botão de ação -->
+            <button
+              class="uk-button uk-button-primary"
+              @click="addProduct">Inserir</button>
+
+          </div>
+
+          <!-- Lista dos produtos -->
+          <table class="uk-table uk-table-divider uk-table-middle">
+
+            <!-- Header da tabela -->
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Vendidos</th>
+                <th>{{ editMode ? 'Editar' : 'Comprar' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- Mensagem quando lista está vazia -->
+              <template v-if="listProducts.empty">
+                <tr>
+                  <td colspan="3">{{ listProducts.message }}</td>
+                </tr>
+              </template>
+
+              <!-- Listagem dos produtos quando lista não é vazia -->
+              <template v-else>
+                <tr
+                  v-for="(product, idx1) in listProducts"
+                  :key="idx1"
+                  class="is-list">
+
+                  <!-- Nome do produto -->
+                  <td>
+                    <span v-if="!editMode">{{ listProducts[idx1].name }}</span>
+                    <div
+                      v-else
+                      class="uk-position-relative">
+
+                        <!-- Campo input só permite edição no "modo de edição" -->
+                        <input
+                          ref="itemToEdit"
+                          class="uk-input"
+                          type="text"
+                          placeholder="Nome do produto"
+                          disabled="true"
+                          required
+                          :value="listProducts[idx1].name"
+                          @input="saveValueOnChange(idx1, $event)"
+                          @keyup.enter="updateProduct(idx1)"/>
+
+                        <!-- Botão de ação -->
+                        <button
+                          ref="btnSave"
+                          class="uk-button uk-button-primary"
+                          style='display: none'
+                          @click="updateProduct(idx1)">Salvar</button>
+
+                    </div>
+                  </td>
+
+                  <!-- Quantidade de vendas do produto -->
+                  <td>
+                    <span>{{ product.qtty_sells }}</span>
+                  </td>
+
+                  <!-- Opções -->
+                  <td>
+
+                    <!-- Botão de venda -->
+                    <button
+                      v-if="!editMode"
+                      class="uk-button uk-button-primary"
+                      @click="sellProduct(idx1)">Comprar</button>
+
+                    <!-- Opções de edição -->
+                    <div
+                      v-else
+                      class="is-ctrl uk-flex">
+
+                      <!-- Botão para habiltar/desabilitar edição de item -->
+                      <div>                        
+                        <a
+                          ref="btnEdit"
+                          href="#"
+                          uk-icon="icon: pencil; ratio: 1.2"
+                          @click.prevent="editItem(idx1)"></a>
+                        <a
+                          ref="btnClose"
+                          href="#"
+                          style='display: none'
+                          uk-icon="icon: close; ratio: 1.2"
+                          @click.prevent="editItem(idx1)"></a>
+                      </div>
+
+                      <!-- Botão para remover item -->
+                      <div>
+                        <a
+                          href="#"
+                          uk-icon="icon: trash; ratio: 1.2"
+                          @click.prevent="deleteProduct(idx1)"></a>
+                      </div>
+                      
+                    </div>
+
+                  </td>
+
+                </tr>
+              </template>
+
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="static/js/vue.js"></script>
+  <script defer src="static/js/bundle.js"></script>
+
+</body>
+
+</html>

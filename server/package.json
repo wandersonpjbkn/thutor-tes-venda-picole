@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@babel/polyfill": "7.0.0",
+    "cors": "2.8.5",
+    "express": "4.16.4",
+    "mongoose": "5.3.14",
+    "morgan": "1.9.1"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node src/server.js",
+    "build": "babel src --out-dir dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "7.2.0",
+    "@babel/core": "7.2.0",
+    "@babel/node": "7.2.0",
+    "@babel/preset-env": "7.2.0",
+    "nodemon": "1.18.7"
+  }
+}
