@@ -5,7 +5,7 @@
   "main": "src/js/main.js",
   "dependencies": {
     "@babel/polyfill": "7.0.0",
-    "axios": "0.18.0",
+    "axios": "0.18.1",
     "uikit": "3.0.0-rc.25",
     "vue": "2.5.17"
   },
