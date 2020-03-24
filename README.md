@@ -8,7 +8,7 @@ O sistema utiliza o MongoDB como banco de dados e para o correto funcionamento �
 
 - Visite [este link](https://www.mongodb.com/download-center/community) para baixar a última versão do MongoDB
 - Nas opções, escolha:
-  - Version: 4.0.4 (current release)
+  - Version: 4.2 (current release)
   - OS: versão compativél ao OS do computador
   - Package: MSI
 - Instale o MongoDB
@@ -22,8 +22,8 @@ O sistema utiliza o MongoDB como banco de dados e para o correto funcionamento �
 
 ### PATH
 
-- Por fim, verifique se foi adicionado a entrada abaixo em `Path` nas Variaveis de Ambiente do Windows, Variavéis do Usuário:
-  - `C:\Program Files\MongoDB\Server\4.0\bin`
+- Por fim, verifique se foi adicionado a entrada abaixo em `Path` nas Variaveis de Ambiente do Windows, Variavéis do Sistema:
+  - `C:\Program Files\MongoDB\Server\4.2\bin`
 
 Havendo dúvidas, seguir as instruções [deste link](https://www.youtube.com/watch?v=sBdaRlgb4N8&feature=youtu.be) - *tudo em inglês*
 
@@ -32,7 +32,7 @@ Havendo dúvidas, seguir as instruções [deste link](https://www.youtube.com/wa
 Inicialize o MongoDB
 > Abra um prompt e execute `mongod`. Esse prompt necessita ficar aberto.
 
-```
+```cmd
 Win + R
 cmd /k mongod
 ```
@@ -49,7 +49,7 @@ npm start
 Abra o aplicativo
 > Ainda no VSCode, navegue até `app\dist` e execute o `index.html`
 
-```
+```bach
 app\dist\index.html
 ```
 
@@ -63,20 +63,18 @@ npm install
 ```
 
 - Build
-```
+
+```bash
 npm run build
 ```
 
 - Watch
-```
+
+```bash
 npm run serve
 ```
 
 Para edição das folhas de estilo, faça-as em `src\scss\main.scss`. No VSCode, execute a tarefa `SCSS Compile` pelo atalho `CTRL+SHIFT+B`
-
-## Vídeo
-
-[Exemplo em execução](https://youtu.be/Sw2lF-z8Cow)
 
 ## Tecnologias
 
