@@ -16,7 +16,7 @@
     "@babel/preset-env": "7.2.0",
     "babelify": "10.0.0",
     "browserify": "16.2.3",
-    "watchify": "3.11.0"
+    "watchify": "^3.11.1"
   },
   "scripts": {
     "serve": "watchify src/js/main.js -t babelify -o dist/static/js/bundle.js -v",
